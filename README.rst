@@ -1,7 +1,7 @@
 python-forexconnect for Python 3
 ================================
 
-This is a Python 3 version of https://github.com/neka-nat/python-forexconnect.git
+This is a Python 3 version of the https://github.com/neka-nat/python-forexconnect.git
 work.
 
 About
@@ -31,18 +31,21 @@ Next, clone this repository.
 
     $ git clone https://github.com/SinHouse/python3-forexconnect.git
 
-Edit "python3-forexconnect/CMakeLists.txt" and change this lines to set your system
-configuration, the default target is for Ubuntu Boost Python 3.5 library:
+Edit "python3-forexconnect/CMakeLists.txt" and change below lines to set your system
+configuration, the default configuration is for Ubuntu Boost Python 3.5 library:
 
     # debian and ubuntu (change "python-py35" to your system version)
+
     find_package(Boost COMPONENTS log date_time python-py35 REQUIRED)
+
     # Mac and others
+
     # find_package(Boost COMPONENTS log date_time libboost_python3 REQUIRED)
 
 Build and install.
-*Note*: It's highly recommended activate a target Python venvironment prior to build
+*Note*: It's highly recommended to activate a target Python venvironment prior to build
 the forexconnect module. The module will be installed in the "site-packages" folder of
-the current Python interpreter, in Ubuntu by default is the Python 2.7 version.
+the current Python interpreter, Ubuntu defaults point to the Python 2.7 version.
 
     $ cd python3-forexconnect
 
