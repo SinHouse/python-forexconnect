@@ -20,7 +20,7 @@ import datetime
 import pandas
 
 if len(sys.argv) < 3:
-    print "Usage: python save_historical_data.py instrument(etc. 'EUR/USD') filename"
+    print("Usage: python save_historical_data.py instrument(etc. 'EUR/USD') filename")
     sys.exit()
 
 instrument = sys.argv[1]

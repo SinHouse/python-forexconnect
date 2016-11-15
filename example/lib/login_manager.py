@@ -12,9 +12,9 @@ def get_login_params():
         return get_from_console()
 
 def get_from_console():
-    username = raw_input("username: ")
+    username = input("username: ")
     password = getpass.getpass("password: ")
-    connection = raw_input("connection: ")
+    connection = input("connection: ")
     save_cache(username, password, connection)
     return username, password, connection
 

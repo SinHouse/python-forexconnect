@@ -13,8 +13,8 @@ try:
 except:
     lm.clear_cache()
     sys.exit()
-print client.get_account_info()
+print(client.get_account_info())
 trades = client.get_trades()
 for t in trades:
-    print t
+    print(t)
 client.logout()

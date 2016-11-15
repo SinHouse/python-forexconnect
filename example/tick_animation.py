@@ -8,7 +8,7 @@ import lib.login_manager as lm
 import lib.realtime_chart as rc
 
 if len(sys.argv) < 2:
-    print "Usage: python tick_animation.py instrument(etc. 'EUR/USD')"
+    print("Usage: python tick_animation.py instrument(etc. 'EUR/USD')")
     sys.exit()
 
 instrument = sys.argv[1]

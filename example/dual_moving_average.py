@@ -11,19 +11,22 @@ import collections
 import numpy as np
 import talib
 
+
 class Trader:
+
     _DATA_LEN = 100
+
     def __init__(self, client, instrument):
         self._client = client
         self._instrument = instrument
-        self._data = collections.deque(maxlen = self._DATA_LEN)
+        self._data = collections.deque(maxlen=self._DATA_LEN)
         self._held_trade = None
         cur_data = client.get_historical_prices(self._instrument,
                                                 datetime.datetime.now() - datetime.timedelta(minutes=self._DATA_LEN + 1),
                                                 datetime.datetime.now())
         self._data.extend([c.close for c in cur_data[::-1]])
-        short_mavg = talib.SMA(np.array(self._data), timeperiod = 5)
-        long_mavg = talib.SMA(np.array(self._data), timeperiod = 25)
+        short_mavg = talib.SMA(np.array(self._data), timeperiod=5)
+        long_mavg = talib.SMA(np.array(self._data), timeperiod=25)
         short_mavg[np.isnan(short_mavg)] = short_mavg[np.isfinite(short_mavg)][0]
         long_mavg[np.isnan(long_mavg)] = long_mavg[np.isfinite(long_mavg)][0]
         rc.add_data("close", self._data)
@@ -59,19 +62,19 @@ class Trader:
 
     def tick(self):
         self._data.append(self._client.get_ask(self._instrument))
-        short_mavg = talib.SMA(np.array(self._data), timeperiod = 5)
-        long_mavg = talib.SMA(np.array(self._data), timeperiod = 25)
+        short_mavg = talib.SMA(np.array(self._data), timeperiod=5)
+        long_mavg = talib.SMA(np.array(self._data), timeperiod=25)
 
         res = True
         if short_mavg[-2] < long_mavg[-2] and short_mavg[-1] > long_mavg[-1]:
-            print datetime.datetime.now(), "Buy signal", self._instrument, self._data[-1]
+            print(datetime.datetime.now(), "Buy signal", self._instrument, self._data[-1])
             res = self.buy()
         elif short_mavg[-2] > long_mavg[-2] and short_mavg[-1] < long_mavg[-1]:
-            print datetime.datetime.now(), "Sell signal", self._instrument, self._data[-1]
+            print(datetime.datetime.now(), "Sell signal", self._instrument, self._data[-1])
             res = self.sell()
         if not res:
-            print "Fail to operate position."
-        print "Balance:", self._client.get_balance()
+            print("Fail to operate position.")
+        print("Balance:", self._client.get_balance())
 
         short_mavg[np.isnan(short_mavg)] = short_mavg[np.isfinite(short_mavg)][0]
         long_mavg[np.isnan(long_mavg)] = long_mavg[np.isfinite(long_mavg)][0]
@@ -82,7 +85,7 @@ class Trader:
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print "Usage: python dual_moving_average.py instrument(etc. 'EUR/USD')"
+        print("Usage: python dual_moving_average.py instrument(etc. 'EUR/USD')")
         sys.exit()
 
     instrument = sys.argv[1]
@@ -95,11 +98,11 @@ if __name__ == '__main__':
         lm.clear_cache()
         sys.exit()
     trader = Trader(client, instrument)
-    print "Start trading..."
+    print("Start trading...")
 
     interval_sec = 60.0
     while True:
         start = time.time()
-        print datetime.datetime.now()
+        print(datetime.datetime.now())
         trader.tick()
         time.sleep(interval_sec - (time.time() - start))

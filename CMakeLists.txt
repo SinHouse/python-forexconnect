@@ -1,15 +1,21 @@
-cmake_minimum_required(VERSION 2.8) 
+cmake_minimum_required(VERSION 3.0)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-find_package(Boost COMPONENTS log date_time python REQUIRED)
-find_package(PythonLibs REQUIRED)
+
+# debian and ubuntu (change "python-py35" to your system version)
+find_package(Boost COMPONENTS log date_time python-py35 REQUIRED)
+# Mac and others
+# find_package(Boost COMPONENTS log date_time libboost_python3 REQUIRED)
+
+find_package(PythonLibs 3 REQUIRED)
+
 find_package(ForexConnectAPI REQUIRED)
 set(SAMPLE_TOOLS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/forexconnect/sample_tools")
 add_definitions(-DBOOST_LOG_DYN_LINK)
 include_directories(${Boost_INCLUDE_DIRS}
   ${PYTHON_INCLUDE_DIR}
   ${FOREXCONNECT_INCLUDE_DIR}
-  ${SAMPLE_TOOLS_DIR}/include)   
+  ${SAMPLE_TOOLS_DIR}/include)
 
 execute_process (
   COMMAND python -c "import site; print(site.getsitepackages()[0])"

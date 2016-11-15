@@ -1,13 +1,13 @@
-python-forexconnect
-===================
+python-forexconnect for Python 3
+================================
 
-.. image:: https://travis-ci.org/neka-nat/python-forexconnect.svg?branch=master
-    :target: https://travis-ci.org/neka-nat/python-forexconnect
+This is a Python 3 version of https://github.com/neka-nat/python-forexconnect.git
+work.
 
 About
-------
+-----
 This library is a Python binding of Forexconnect API
-using boost.python.
+using boost.python3.
 
 Build
 -----
@@ -29,11 +29,22 @@ and set environment "FOREXCONNECT_ROOT" which is the path ForexConnectAPI instal
 
 Next, clone this repository.
 
-    $ git clone https://github.com/neka-nat/python-forexconnect.git
+    $ git clone https://github.com/SinHouse/python3-forexconnect.git
+
+Edit "python3-forexconnect/CMakeLists.txt" and change this lines to set your system
+configuration, the default target is for Ubuntu Boost Python 3.5 library:
+
+    # debian and ubuntu (change "python-py35" to your system version)
+    find_package(Boost COMPONENTS log date_time python-py35 REQUIRED)
+    # Mac and others
+    # find_package(Boost COMPONENTS log date_time libboost_python3 REQUIRED)
 
 Build and install.
+*Note*: It's highly recommended activate a target Python venvironment prior to build
+the forexconnect module. The module will be installed in the "site-packages" folder of
+the current Python interpreter, in Ubuntu by default is the Python 2.7 version.
 
-    $ cd python-forexconnect
+    $ cd python3-forexconnect
 
     $ mkdir build
 
@@ -41,13 +52,13 @@ Build and install.
 
     $ cmake .. -DDEFAULT_FOREX_URL="http://<Your forexconnect URL>"
 
-    $ make install
+    $ sudo make install
 
 
 Usage
-------
+-----
 
-This tutorial is simple trading using python-forexconnect.
+This tutorial is simple trading using python3-forexconnect.
 First, give FXCM account username, password and type ("Real" or "Demo") to login.
 Next, send query to open position and get the position list which you have.
 Finally, close the opened position and logout.
@@ -62,7 +73,8 @@ Finally, close the opened position and logout.
    >> cl.logout()
 
 Requirements
--------------
+------------
 
 * boost 1.54
 * ForexConnectAPI 1.4.1
+* Python 3
