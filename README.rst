@@ -62,7 +62,7 @@ the current Python interpreter, Ubuntu defaults point to the Python 2.7 version.
 Usage
 -----
 
-This tutorial is simple trading using python3-forexconnect.
+This example is a simple connection using python3-forexconnect.
 First, give FXCM account username, password, type ("Real" or "Demo"), and url to login.
 Next, download and print historical data
 Finally, logout.
