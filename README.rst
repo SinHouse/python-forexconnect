@@ -63,9 +63,9 @@ Usage
 -----
 
 This tutorial is simple trading using python3-forexconnect.
-First, give FXCM account username, password and type ("Real" or "Demo") to login.
-Next, send query to open position and get the position list which you have.
-Finally, close the opened position and logout.
+First, give FXCM account username, password, type ("Real" or "Demo"), and url to login.
+Next, download and print historical data
+Finally, logout.
 
 ::
 
