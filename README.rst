@@ -75,12 +75,12 @@ Finally, logout.
    >> client = forexconnect.ForexConnectClient('usermane',
    >>                                          'password',
    >>                                          'Demo',
-   >> 					                       'http://www.fxcorporate.com/Hosts.jsp')
+   >>                                          'http://www.fxcorporate.com/Hosts.jsp')
    >>
    >> data = client.get_historical_prices('EUR/USD',
-   >> 				                      datetime.datetime(2016, 11, 8, 10, 0),
-   >> 				                      datetime.datetime(2016, 11, 9, 17, 0),
-   >> 				                      'm5')
+   >>                                     datetime.datetime(2016, 11, 8, 10, 0),
+   >>                                     datetime.datetime(2016, 11, 9, 17, 0),
+   >>                                     'm5')
    >> print(data)
    >> client.logout()
 
