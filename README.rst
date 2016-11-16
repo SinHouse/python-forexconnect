@@ -43,6 +43,7 @@ configuration, the default configuration is for Ubuntu Boost Python 3.5 library:
     # find_package(Boost COMPONENTS log date_time libboost_python3 REQUIRED)
 
 Build and install.
+
 *Note*: It's highly recommended to activate a target Python venvironment prior to build
 the forexconnect module. The module will be installed in the "site-packages" folder of
 the current Python interpreter, Ubuntu defaults point to the Python 2.7 version.
@@ -69,11 +70,19 @@ Finally, close the opened position and logout.
 ::
 
    >> import forexconnect
-   >> cl = forexconnect.ForexConnectClient("usrname", "pass", "Real")
-   >> cl.open_position("EUR/JPY", forexconnect.BUY, 1)
-   >> ti = cl.get_trades()
-   >> cl.close_position(ti[0].trade_id)
-   >> cl.logout()
+   >> import datetime
+   >>
+   >> client = forexconnect.ForexConnectClient('usermane',
+   >>                                          'password',
+   >>                                          'Demo',
+   >> 					                       'http://www.fxcorporate.com/Hosts.jsp')
+   >>
+   >> data = client.get_historical_prices('EUR/USD',
+   >> 				                      datetime.datetime(2016, 11, 8, 10, 0),
+   >> 				                      datetime.datetime(2016, 11, 9, 17, 0),
+   >> 				                      'm5')
+   >> print(data)
+   >> client.logout()
 
 Requirements
 ------------
